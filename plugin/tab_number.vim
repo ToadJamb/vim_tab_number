@@ -1,7 +1,17 @@
 function MyTabLabel(n)
     let buflist = tabpagebuflist(a:n)
     let winnr = tabpagewinnr(a:n)
-    return a:n . ':' . bufname(buflist[winnr - 1])
+    let buffername = bufname(buflist[winnr - 1])
+    let mod = getbufvar(buffername, '&mod')
+    let tab_title = a:n . ':'
+
+    if mod > 0
+      let tab_title .= '+:'
+    endif
+
+    let tab_title .= pathshorten(buffername)
+
+    return tab_title
 endfunction
 
 function MyTabLine()
