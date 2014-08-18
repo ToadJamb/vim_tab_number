@@ -1,4 +1,9 @@
-function MyTabLabel(n)
+" File:        tab_number.vim
+" Author:      Travis Herrick
+" Version:     0.0.2
+" Description: Display the tab number at the top of each tab.
+
+function! l:MyTabLabel(n)
     let buflist = tabpagebuflist(a:n)
     let winnr = tabpagewinnr(a:n)
     let buffername = bufname(buflist[winnr - 1])
@@ -14,7 +19,7 @@ function MyTabLabel(n)
     return tab_title
 endfunction
 
-function MyTabLine()
+function! l:MyTabLine()
   let s = ''
   for i in range(tabpagenr('$'))
     " select the highlighting
@@ -42,4 +47,4 @@ function MyTabLine()
   return s
 endfunction
 
-set tabline=%!MyTabLine()
+set tabline=%!l:MyTabLine()
