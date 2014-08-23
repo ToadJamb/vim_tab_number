@@ -1,6 +1,6 @@
 " File:        tab_number.vim
 " Author:      Travis Herrick
-" Version:     0.0.2
+" Version:     0.0.3
 " Description: Display the tab number at the top of each tab.
 
 function! l:MyTabLabel(n)
@@ -33,7 +33,7 @@ function! l:MyTabLine()
     let s .= '%' . (i + 1) . 'T'
 
     " the label is made by MyTabLabel()
-    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+    let s .= ' %{l:MyTabLabel(' . (i + 1) . ')} '
   endfor
 
   " after the last tab fill with TabLineFill and reset tab page nr
