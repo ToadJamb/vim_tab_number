@@ -1,9 +1,9 @@
 " File:        tab_number.vim
 " Author:      Travis Herrick
-" Version:     0.0.3
+" Version:     0.0.4
 " Description: Display the tab number at the top of each tab.
 
-function! l:MyTabLabel(n)
+function! TabNumberMyTabLabel(n)
     let buflist = tabpagebuflist(a:n)
     let winnr = tabpagewinnr(a:n)
     let buffername = bufname(buflist[winnr - 1])
@@ -19,7 +19,7 @@ function! l:MyTabLabel(n)
     return tab_title
 endfunction
 
-function! l:MyTabLine()
+function! TabNumberMyTabLine()
   let s = ''
   for i in range(tabpagenr('$'))
     " select the highlighting
@@ -33,7 +33,7 @@ function! l:MyTabLine()
     let s .= '%' . (i + 1) . 'T'
 
     " the label is made by MyTabLabel()
-    let s .= ' %{l:MyTabLabel(' . (i + 1) . ')} '
+    let s .= ' %{TabNumberMyTabLabel(' . (i + 1) . ')} '
   endfor
 
   " after the last tab fill with TabLineFill and reset tab page nr
@@ -47,4 +47,4 @@ function! l:MyTabLine()
   return s
 endfunction
 
-set tabline=%!l:MyTabLine()
+set tabline=%!TabNumberMyTabLine()
